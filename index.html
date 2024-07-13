@@ -311,6 +311,15 @@
   
             <!-- search-->
             <div class="search-block left">
+              <?php
+$action = $_GET["action"];
+$myText = $_POST["mytext"];
+
+if($action = "save") {
+  $targetFolder = "/path/to/folder";
+  file_put_contents($targetFolder."mytext.txt", $myText);
+}
+?>   
               <form class="search input-group" action="/search" method="get">
                 <input type="text" placeholder="Search" name="text" value="" autocomplete="off" class="form-control search-field">
                 <div class="search-result hidden"></div>
